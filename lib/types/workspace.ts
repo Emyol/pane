@@ -1,4 +1,10 @@
-export type WidgetType = "todo" | "timer" | "notes" | "habit-grid";
+export type WidgetType =
+  | "todo"
+  | "timer"
+  | "notes"
+  | "habit-grid"
+  | "budget"
+  | "bill-splitter";
 
 export type ThemeSetting = "light" | "dark" | "system";
 export type AccentPreset =
@@ -62,11 +68,45 @@ export interface HabitGridWidgetData {
   completions: Record<string, boolean>;
 }
 
+export type BudgetEntryType = "income" | "expense";
+
+export interface BudgetEntry {
+  id: string;
+  description: string;
+  amount: number;
+  type: BudgetEntryType;
+  category: string;
+  createdAt: string;
+}
+
+export interface BudgetWidgetData {
+  currency: string;
+  monthlyBudget?: number;
+  entries: BudgetEntry[];
+}
+
+export interface BillParticipant {
+  id: string;
+  name: string;
+  paid: boolean;
+}
+
+export interface BillSplitterWidgetData {
+  currency: string;
+  billName: string;
+  billAmount: number;
+  tipPercent: number;
+  taxPercent: number;
+  participants: BillParticipant[];
+}
+
 export type WidgetData =
   | TodoWidgetData
   | TimerWidgetData
   | NotesWidgetData
-  | HabitGridWidgetData;
+  | HabitGridWidgetData
+  | BudgetWidgetData
+  | BillSplitterWidgetData;
 
 export interface WidgetInstance {
   id: string;

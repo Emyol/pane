@@ -3,7 +3,14 @@ import type { Workspace } from "@/lib/types/workspace";
 
 const themeSchema = z.enum(["light", "dark", "system"]);
 const accentSchema = z.enum(["blue", "teal", "purple", "orange", "rose", "gray"]);
-const widgetTypeSchema = z.enum(["todo", "timer", "notes", "habit-grid"]);
+const widgetTypeSchema = z.enum([
+  "todo",
+  "timer",
+  "notes",
+  "habit-grid",
+  "budget",
+  "bill-splitter",
+]);
 
 const layoutItemSchema = z.object({
   i: z.string(),

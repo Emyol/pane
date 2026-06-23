@@ -4,6 +4,8 @@ import {
   Timer as TimerIcon,
   StickyNote,
   Grid3x3,
+  Wallet,
+  Receipt,
   type LucideIcon,
 } from "lucide-react";
 import type {
@@ -95,6 +97,44 @@ export const WIDGET_REGISTRY: Record<WidgetType, WidgetMeta> = {
     component: dynamic(() =>
       import("@/components/widgets/habit-grid/HabitGridWidget").then(
         (m) => m.HabitGridWidget
+      )
+    ),
+  },
+  budget: {
+    type: "budget",
+    label: "Budget Tracker",
+    description: "Track income & expenses",
+    icon: Wallet,
+    defaultSize: { x: 0, y: 0, w: 4, h: 6 },
+    minSize: { w: 3, h: 5 },
+    createDefaultData: () => ({
+      currency: "$",
+      entries: [],
+    }),
+    component: dynamic(() =>
+      import("@/components/widgets/budget/BudgetWidget").then(
+        (m) => m.BudgetWidget
+      )
+    ),
+  },
+  "bill-splitter": {
+    type: "bill-splitter",
+    label: "Bill Splitter",
+    description: "Split costs across people",
+    icon: Receipt,
+    defaultSize: { x: 0, y: 0, w: 4, h: 6 },
+    minSize: { w: 3, h: 5 },
+    createDefaultData: () => ({
+      currency: "$",
+      billName: "",
+      billAmount: 0,
+      tipPercent: 0,
+      taxPercent: 0,
+      participants: [],
+    }),
+    component: dynamic(() =>
+      import("@/components/widgets/bill-splitter/BillSplitterWidget").then(
+        (m) => m.BillSplitterWidget
       )
     ),
   },
