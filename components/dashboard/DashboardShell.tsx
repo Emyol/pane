@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { LogOut, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -56,7 +57,16 @@ export function DashboardShell() {
     <div className="min-h-dvh bg-[var(--color-background)]">
       <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b bg-[var(--color-surface)] px-4">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="text-base font-semibold">Pane</span>
+          <span className="flex items-center gap-2">
+            <Image
+              src="/pane-icon.png"
+              alt="Pane logo"
+              width={24}
+              height={24}
+              className="size-6 rounded-md dark:invert"
+            />
+            <span className="text-base font-semibold">Pane</span>
+          </span>
           <span className="text-muted-foreground">/</span>
           {editingName ? (
             <Input
